@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using TrashCollector.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector.Startup))]
 namespace TrashCollector
@@ -9,6 +10,12 @@ namespace TrashCollector
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            createRolesandUsers();
+        }
+
+        private void createRolesandUsers()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
         }
     }
 }
