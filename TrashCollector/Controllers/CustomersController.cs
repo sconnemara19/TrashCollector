@@ -39,6 +39,7 @@ namespace TrashCollector.Controllers
         public ActionResult Create()
         {
             return View();
+
         }
 
         // POST: Customers/Create
@@ -48,6 +49,8 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,StreetAddress,Zipcode,pickupDay,balance,monthlyCharge,pickupConfirmed,Start,End")] Customer customer)
         {
+            
+            
             if (ModelState.IsValid)
             {
                 db.Customers.Add(customer);

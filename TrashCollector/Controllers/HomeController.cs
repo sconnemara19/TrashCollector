@@ -6,10 +6,21 @@ using System.Web.Mvc;
 
 namespace TrashCollector.Controllers
 {
+   public class Role
+    {
+        public string UserRole { get; set; }
+    }
+
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            List<Role> lst = new List<Role>();
+            lst.Add(new Role() { UserRole = "Customer" });
+            lst.Add(new Role() { UserRole = "Employee" });
+            ViewBag.Name = new SelectList(lst);
+          
             return View();
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -142,8 +143,11 @@ namespace TrashCollector.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                             .ToList(), "Name", "Name");
+            List<string> roles = context.Roles.Where(u => !u.Name.Contains("Admin")).Select(r => r.Name).ToList();
+            ViewBag.Name = new SelectList(roles);
+                
+                /*new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                             .ToList(), "Name", "Name");*/
             return View();
         }
 
@@ -174,7 +178,8 @@ namespace TrashCollector.Controllers
                                                  .ToList(), "Name", "Name");   
                 AddErrors(result);
             }
-
+            List<string> roles = context.Roles.Where(u => !u.Name.Contains("Admin")).Select(r => r.Name).ToList();
+            ViewBag.Name = new SelectList(roles);
             // If we got this far, something failed, redisplay form
             return View(model);
         }
