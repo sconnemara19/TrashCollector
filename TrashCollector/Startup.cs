@@ -23,30 +23,7 @@ namespace TrashCollector
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-
-
-            if (!roleManager.RoleExists("Admin" ))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
-
-                var user = new ApplicationUser();
-                user.UserName = "Simone";
-                user.Email = "simoneC@yahoo.com";
-
-                string userPWD = "MichaelsTots";
-
-                var chkUser = UserManager.Create(user, userPWD);
-
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-
-                }
-
-            }
-            if (!roleManager.RoleExists ("Customer"))
+            if (!roleManager.RoleExists("Customer"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Customer";
@@ -59,6 +36,8 @@ namespace TrashCollector
                 role.Name = "Employee";
                 roleManager.Create(role);
             }
+
+            
 
 
 

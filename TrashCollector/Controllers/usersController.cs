@@ -41,9 +41,19 @@ namespace TrashCollector.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var user = User.Identity;
-                ApplicationDBContext context = new ApplicationDBContext();
+                ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            return false;
         }
     }
 }
