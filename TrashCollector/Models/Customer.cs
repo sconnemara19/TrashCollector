@@ -30,6 +30,15 @@ namespace TrashCollector.Models
 
         [Display (Name = "Pickup Day")]
         public string pickupDay { get; set; }
+
+        public enum DayOfTheWeek
+        {
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday
+        }
         
         [Display(Name = "Balance")]
         public double balance  { get; set; }
