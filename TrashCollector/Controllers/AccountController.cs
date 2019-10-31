@@ -159,7 +159,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -171,15 +171,26 @@ namespace TrashCollector.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRole);
-                    return RedirectToAction("Create", "Customers");
+                    List<string> roles = context.Roles.Where(u => !u.Name.Contains("Admin")).Select(r => r.Name).ToList();
+                    ViewBag.Name = new SelectList(roles);
+                    // If we got this far, something failed, redisplay form
+                   
+                    if (model.UserRole == "Customer")
+                    {
+                        return RedirectToAction("Create", "Customers");
+                    }
+                    else 
+                    {
+                        return RedirectToAction("Create", "Employees");
+                    }
+                    
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                                 .ToList(), "Name", "Name");   
+                                                  .ToList(), "Name", "Name");
+                
                 AddErrors(result);
+                
             }
-            List<string> roles = context.Roles.Where(u => !u.Name.Contains("Admin")).Select(r => r.Name).ToList();
-            ViewBag.Name = new SelectList(roles);
-            // If we got this far, something failed, redisplay form
             return View(model);
 
 
