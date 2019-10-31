@@ -38,6 +38,7 @@ namespace TrashCollector.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
+            Customer customer = new Customer();
             return View();
 
         }
