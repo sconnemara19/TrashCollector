@@ -146,8 +146,7 @@ namespace TrashCollector.Controllers
             List<string> roles = context.Roles.Where(u => !u.Name.Contains("Admin")).Select(r => r.Name).ToList();
             ViewBag.Name = new SelectList(roles);
                 
-                /*new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
-                                             .ToList(), "Name", "Name");*/
+                
             return View();
         }
 
@@ -172,7 +171,7 @@ namespace TrashCollector.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRole);
-                    return RedirectToAction("Index", "Users");
+                    return RedirectToAction("Create", "Customers");
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                                  .ToList(), "Name", "Name");   
@@ -182,6 +181,9 @@ namespace TrashCollector.Controllers
             ViewBag.Name = new SelectList(roles);
             // If we got this far, something failed, redisplay form
             return View(model);
+
+
+
         }
 
         //
