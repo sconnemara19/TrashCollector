@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,12 +14,30 @@ namespace TrashCollector.Controllers
     public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+         
         // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var UserId = User.Identity.GetUserId();
+            DateTime today = DateTime.Now;
+            string dayOfWeek = today.DayOfWeek.ToString();
+            var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
+            var customerDb = db.Customers.Where(c => c.Zipcode == employeeDb.employeeZipcode).ToList();
+            var customers = customerDb.Where(c => c.pickupDay == dayOfWeek);
+            return View( customerDb);
+
         }
+        public ActionResult PickupDay()
+        {
+
+            string Dayofpickup = DateTime.Today.DayOfWeek.ToString();
+            var UserId = User.Identity.GetUserId();
+            var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
+            var customersDb = db.Customers.Where(c => c.pickupDay == employeeDb.employeeZipcode).ToList();
+            var customers = customersDb.Where(c => c.pickupDay == Dayofpickup).ToList();
+            return View(customersDb);
+        }
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
@@ -51,6 +70,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.ApplicationId = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
