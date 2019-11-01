@@ -107,3 +107,6 @@ C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\Tra
 C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.secondmigration.resources
 C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.thirdmigration.resources
 C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.AddedDropDownMenuForDaysOfTheWeek.resources
+C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.Update.resources
+C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.MakingDateTimeNull.resources
+C:\Users\simon\Desktop\Visual Studio\TrashCollector\TrashCollector\obj\Debug\TrashCollector.Migrations.DropDownMenuForExtraPickUpDate.resources

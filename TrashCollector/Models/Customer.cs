@@ -51,15 +51,17 @@ namespace TrashCollector.Models
 
 
         [Display(Name = "Extra Pickup Day")]
-        public DateTime ExtraPickupDay { get; set; }
-
+        public DateTime? ExtraPickupDay { get; set; }
+        public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
 
 
         [Display(Name = "Start Suspension" )]
-        public DateTime  Start { get; set; }
+        public DateTime?  Start { get; set; }
 
         [Display(Name = "End Suspension")]
-        public DateTime End  { get; set; }
+        public DateTime? End  { get; set; }
 
         [ForeignKey ("ApplicationUser")]
         public string ApplicationId { get; set; }

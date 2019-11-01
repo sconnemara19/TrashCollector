@@ -54,6 +54,9 @@ namespace TrashCollector.Controllers
             
             if (ModelState.IsValid)
             {
+
+                DateTime date1 = new DateTime(customer.Year,customer.Month,customer.Day);
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -127,5 +130,9 @@ namespace TrashCollector.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+        
     }
+
 }
