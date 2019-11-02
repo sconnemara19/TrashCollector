@@ -10,7 +10,12 @@ namespace TrashCollector.Models
     public class Employee
     {   [Key]
         public int employeeId { get; set; }
+        [Display(Name = "Zipcode")]
         public string employeeZipcode { get; set; }
+        
+        [Display(Name = "Pickup Day")]
+        public string pickupDay { get; set; }
+        
 
         [ForeignKey("ApplicationUser")]
         public string ApplicationId { get; set; }

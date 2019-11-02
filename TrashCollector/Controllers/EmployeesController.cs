@@ -22,21 +22,12 @@ namespace TrashCollector.Controllers
             DateTime today = DateTime.Now;
             string dayOfWeek = today.DayOfWeek.ToString();
             var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
-            var customerDb = db.Customers.Where(c => c.Zipcode == employeeDb.employeeZipcode).ToList();
+            var customerDb = db.Customers.Where(c => c.Zipcode == employeeDb.employeeZipcode && c.pickupDay == dayOfWeek).ToList();
             var customers = customerDb.Where(c => c.pickupDay == dayOfWeek);
             return View( customerDb);
 
         }
-        public ActionResult PickupDay()
-        {
-
-            string Dayofpickup = DateTime.Today.DayOfWeek.ToString();
-            var UserId = User.Identity.GetUserId();
-            var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
-            var customersDb = db.Customers.Where(c => c.pickupDay == employeeDb.employeeZipcode).ToList();
-            var customers = customersDb.Where(c => c.pickupDay == Dayofpickup).ToList();
-            return View(customersDb);
-        }
+        
 
 
         // GET: Employees/Details/5
