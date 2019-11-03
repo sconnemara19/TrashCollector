@@ -27,6 +27,8 @@ namespace TrashCollector.Controllers
             return View( customerDb);
 
         }
+
+
         
 
 
@@ -127,13 +129,22 @@ namespace TrashCollector.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+
+
+        public ActionResult WorkForToday()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+            var employeeId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationId == employeeId).FirstOrDefault();
+            var results = db.Customers.Where(c => c.Zipcode == employee.employeeZipcode && c.pickupDay == DateTime.Today.DayOfWeek);
+            return View(results);
+        } 
+
     }
 }
