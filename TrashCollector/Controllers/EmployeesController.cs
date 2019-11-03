@@ -18,18 +18,18 @@ namespace TrashCollector.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var UserId = User.Identity.GetUserId();
-            DateTime today = DateTime.Now;
-            string dayOfWeek = today.DayOfWeek.ToString();
-            var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
-            var customerDb = db.Customers.Where(c => c.Zipcode == employeeDb.employeeZipcode && c.pickupDay == dayOfWeek).ToList();
-            var customers = customerDb.Where(c => c.pickupDay == dayOfWeek);
-            return View( customerDb);
+            //var UserId = User.Identity.GetUserId();
+            //DateTime today = DateTime.Now;
+            //string dayOfWeek = today.DayOfWeek.ToString();
+            //var employeeDb = db.Employees.Where(e => e.ApplicationId == UserId).FirstOrDefault();
+            ////var customerDb = db.Customers.Where(c => c.Zipcode == employeeDb.employeeZipcode && c.pickupDay == dayOfWeek).ToList();
+            //var customers = customerDb.Where(c => c.pickupDay == dayOfWeek);
+            return View();
 
         }
 
 
-        
+
 
 
         // GET: Employees/Details/5
@@ -142,9 +142,11 @@ namespace TrashCollector.Controllers
         {
             var employeeId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationId == employeeId).FirstOrDefault();
-            var results = db.Customers.Where(c => c.Zipcode == employee.employeeZipcode && c.pickupDay == DateTime.Today.DayOfWeek);
+            var results = db.Customers.Where(e => e.Zipcode == employee.employeeZipcode && e.pickupDay == DateTime.Today.DayOfWeek);
+
             return View(results);
-        } 
+        }
+        
 
     }
 }

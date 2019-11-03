@@ -29,37 +29,31 @@ namespace TrashCollector.Models
         public string Zipcode { get; set; }
 
         [Display(Name = "Pickup Day")]
-        public string pickupDay { get; set; }
+        public DayOfWeek pickupDay { get; set; }
 
-        public enum DayOfTheWeek
-        {
-            Monday,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday
-        }
+
 
         [Display(Name = "Balance")]
-        public double balance { get; set; }
+        public double? balance { get; set; }
 
-        [Display(Name = "Monthly Charges")]
-        public double monthlyCharge { get; set; }
+        
 
         [Display(Name = "Pickup Confirmed")]
-        public bool pickupConfirmed { get; set; }
+        public bool? pickupConfirmed { get; set; }
 
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:YYYY-MM-DD}", ApplyFormatInEditMode = true)]
         [Display(Name = "Extra Pickup Day")]
-        public DateTime? ExtraPickupDay { get; set; }
-        public int Day { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
+        public DateTime? PickupDate { get; set; }
 
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:YYYY-MM-DD}", ApplyFormatInEditMode = true)]
         [Display(Name = "Start Suspension" )]
         public DateTime?  Start { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:YYYY-MM-DD}", ApplyFormatInEditMode = true)]
         [Display(Name = "End Suspension")]
         public DateTime? End  { get; set; }
 

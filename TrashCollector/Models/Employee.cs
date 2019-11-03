@@ -13,8 +13,7 @@ namespace TrashCollector.Models
         [Display(Name = "Zipcode")]
         public string employeeZipcode { get; set; }
         
-        [Display(Name = "Pickup Day")]
-        public string pickupDay { get; set; }
+        
         
 
         [ForeignKey("ApplicationUser")]
